@@ -1,0 +1,5 @@
+{
+  "dataSource": {
+    "mongodb": "mongodb://localhost"
+  }
+}
