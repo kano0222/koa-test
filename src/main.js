@@ -1,5 +1,5 @@
 const { PORT } = require('./config/config.default')
-const { addMongoDB } = require('./data')
+const { addMongoDB } = require('./db')
 
 const cluster_1 = require("cluster")
 async function run () {

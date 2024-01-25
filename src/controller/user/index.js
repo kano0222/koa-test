@@ -1,12 +1,11 @@
-const { createUser } = require('../service/user.service')
+const UserService = require('../../service/user')
+const R = require('../../Response')
 class UserController {
   async register (ctx, next) {
-    console.log(ctx.request.body)
-    console.log(ctx.body)
     if (ctx.request.body) {
       const { username, password } = ctx.request.body
-      const res = await createUser(username, password)
-      ctx.body = ctx.request.body
+      const svc = new UserService(ctx.db.test)
+      ctx.body = R.ok(await svc.createUser(username, password))
       return
     }
     ctx.body = '注册失败'
