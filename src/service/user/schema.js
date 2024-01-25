@@ -10,4 +10,7 @@ module.exports = new mongoose.Schema({
     type: String,
     required: true
   },
+  age: {
+    type: Number
+  },
 })
