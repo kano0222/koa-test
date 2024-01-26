@@ -1,7 +1,7 @@
 const { PORT } = require('./config/config.default')
-const { addMongoDB } = require('./db')
 
 const cluster_1 = require("cluster")
+/*  */
 async function run () {
   console.info(`Node版本：`, process.versions.node)
   console.info(`NODE_ENV：`, process.env.NODE_ENV)
@@ -15,11 +15,12 @@ async function run () {
       cluster_1.default.fork()
     }
   })
-  const app = require('./app')
-  await addMongoDB(app)
+  // const app =
+  require('./app')
+  const { createServer } = require("./app")
+  const app = await createServer()
   app.listen(PORT, () => {
     console.log(`server is running on ${PORT}!`)
   })
 }
 run()
-// db.createUser({ user: "kano0222", pwd: "kano224", roles: [{ role: 'root', db: "admin" }] })
