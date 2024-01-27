@@ -36,7 +36,9 @@ class UserController {
   async updateUser (ctx, next) {
     try {
       const svc = new UserService(ctx.db.test)
-      ctx.body = R.ok(await svc.updateUser(ctx.request.body), '用户信息修改成功')
+      const user = await svc.updateUser(ctx.request.body)
+      const message = user ? '用户信息修改成功' : '用户不存在'
+      ctx.body = R.ok(user, message)
     } catch (error) {
       ctx.body = R.ok(null, '用户信息修改失败')
     }
